@@ -5,10 +5,14 @@ using UnityEngine;
 public class PadelController : MonoBehaviour
 {
     public int speed;
+    public KeyCode upKey;
+    public KeyCode downKey;
+
+    private Rigidbody2D rig;
     // Start is called before the first frame update
     private void Start()
     {
-        
+        rig = GetComponent<Rigidbody2D>();    
     }
 
     // Update is called once per frame
@@ -20,11 +24,11 @@ public class PadelController : MonoBehaviour
 
     private Vector2 GetInput()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(upKey))
         {
             return Vector2.up * speed;
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(downKey))
         {
             return Vector2.down * speed;
         }
@@ -32,6 +36,6 @@ public class PadelController : MonoBehaviour
     }
     private void MoveObject(Vector2 movement)
     {
-         transform.Translate(movement * Time.deltaTime);
+         rig.velocity = movement;
     }
 }

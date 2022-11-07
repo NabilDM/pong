@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class BallControl : MonoBehaviour
 {
-    public Vector2 speed;
-    // Start is called before the first frame update
-    private void Start()
-    {
-        
-    }
+   public Vector2 speed;
 
-    // Update is called once per frame
-    private void Update()
-    {
+   private Rigidbody2D rig;
 
-        transform.Translate(speed * Time.deltaTime);
-    }
+   private void Start()
+   {
+    rig = GetComponent<Rigidbody2D>();
+    rig.velocity = speed;
+   }
+
 }
