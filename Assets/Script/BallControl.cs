@@ -6,6 +6,7 @@ public class BallControl : MonoBehaviour
 {
    public Vector2 speed;
    public Vector2 resetPosition;
+
    private Rigidbody2D rig;
 
    private void Start()
@@ -16,7 +17,12 @@ public class BallControl : MonoBehaviour
 
    public void ResetBall()
    {
-      transform.position = new Vector3(resetPosition.x, resetPosition.y,2);
+      transform.position = new Vector3(resetPosition.x, resetPosition.y, 2);
+   }
+
+   public void ActivatePUSpeedUP(float magnitude)
+   {
+      rig.velocity *= magnitude;
    }
 
 }
