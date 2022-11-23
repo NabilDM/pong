@@ -11,11 +11,18 @@ public class PowerUpManager : MonoBehaviour
    public Vector2 powerUpAreaMin;
    public Vector2 powerUpAreaMax;
    public List<GameObject> powerUpTempLateList;
+   public AudioSource audioPlayer;
 
    private List<GameObject> powerUpList;
 
    private float timer;
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "SpeedUp"){
+         audioPlayer.Play();
+      }
+    }
    private void Start()
    {
         powerUpList = new List<GameObject>();
@@ -41,6 +48,14 @@ public class PowerUpManager : MonoBehaviour
 
    public void GenerateRandomPowerUp(Vector2 position)
    {
+
+        Debug.Log("Test");
+        
+        if (powerUpList.Count > maxPowerUpAmount)
+        {
+            return;
+        }
+
         if (position.x < powerUpAreaMin.x ||
             position.x > powerUpAreaMax.x ||
             position.y < powerUpAreaMin.y ||
@@ -69,5 +84,8 @@ public class PowerUpManager : MonoBehaviour
         {
             RemovePowerUp(powerUpList[0]);
         }
+        
    }
+
+
 }
